@@ -17,10 +17,10 @@ import getStripe from "@/lib/getStripe";
 interface StateContext {
   totalPrice: number;
   totalQuantites: number;
-  cartItems;
-  setShowCart;
-  toggleCartItemQuantity;
-  onRemove;
+  cartItems: Array<YourItemType>; // Replace YourItemType with the actual type of cart items
+  setShowCart: (show: boolean) => void;
+  toggleCartItemQuantity: (itemId: string, action: string) => void;
+  onRemove: (item: YourItemType) => void;
 }
 
 const Cart = () => {
@@ -32,7 +32,7 @@ const Cart = () => {
     setShowCart,
     toggleCartItemQuantity,
     onRemove,
-  } = useStateContext() as StateContext;
+  } = useStateContext();
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
