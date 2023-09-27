@@ -14,6 +14,15 @@ import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
 import getStripe from "@/lib/getStripe";
 
+interface StateContext {
+  totalPrice: number;
+  totalQuantites: number;
+  cartItems;
+  setShowCart;
+  toggleCartItemQuantity;
+  onRemove;
+}
+
 const Cart = () => {
   const cartRef = useRef();
   const {
@@ -23,7 +32,7 @@ const Cart = () => {
     setShowCart,
     toggleCartItemQuantity,
     onRemove,
-  } = useStateContext();
+  } = useStateContext() as StateContext;
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
