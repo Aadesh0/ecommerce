@@ -14,6 +14,15 @@ import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
 import getStripe from "@/lib/getStripe";
 
+interface YourItemType {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string[];
+  // other properties
+}
+
 interface StateContext {
   totalPrice: number;
   totalQuantites: number;
@@ -32,7 +41,7 @@ const Cart = () => {
     setShowCart,
     toggleCartItemQuantity,
     onRemove,
-  } = useStateContext();
+  } = useStateContext() as StateContext;
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
