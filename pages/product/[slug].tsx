@@ -11,10 +11,15 @@ import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 interface ProductType {
+  _id: string;
   image: string[];
   name: string;
   details: string;
   price: number;
+  quantity: number;
+  slug: {
+    current: string;
+  };
 }
 
 const ProductDetails = ({
@@ -123,7 +128,7 @@ export const getStaticPaths = async () => {
   }
   `;
 
-  const products = await client.fetch(query);
+  const products: ProductType[] = await client.fetch(query);
 
   const paths = products.map((product) => ({
     params: {
@@ -137,12 +142,16 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  const query = `*[_type == "product" && slug.current == '${params.slug}'][0]`;
   const productsQuery = '*[_type == "product"]';
 
-  const product = await client.fetch(query);
-  const products = await client.fetch(productsQuery);
+  const product: ProductType = await client.fetch(query);
+  const products: ProductType[] = await client.fetch(productsQuery);
 
   //console.log(product);
 
