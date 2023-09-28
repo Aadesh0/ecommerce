@@ -5,16 +5,16 @@ import { urlFor } from "../lib/client";
 
 const FooterBanner = ({
   footerBanner: {
-    discount,
-    largeText1,
-    largeText2,
-    saleTime,
-    smallText,
-    midText,
-    desc,
-    product,
-    buttonText,
-    image,
+    discount = "",
+    largeText1 = "",
+    largeText2 = "",
+    saleTime = "",
+    smallText = "",
+    midText = "",
+    desc = "",
+    product = "",
+    buttonText = "",
+    image = "",
   },
 }) => {
   return (
@@ -36,7 +36,7 @@ const FooterBanner = ({
         </div>
 
         <img
-          src={urlFor(image)}
+          src={urlFor(image).toString()}
           className="footer-banner-image"
           width={600}
           height={580}

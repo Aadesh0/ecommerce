@@ -1,8 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Head from "next/head";
 import { Navbar, Footer } from ".";
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode; // Use ReactNode as the type for children
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="layout">
       <Head>

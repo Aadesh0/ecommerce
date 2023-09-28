@@ -10,7 +10,20 @@ import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
-const ProductDetails = ({ product, products }) => {
+interface ProductType {
+  image: string[];
+  name: string;
+  details: string;
+  price: number;
+}
+
+const ProductDetails = ({
+  product,
+  products,
+}: {
+  product: ProductType;
+  products: ProductType[];
+}) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
@@ -27,15 +40,16 @@ const ProductDetails = ({ product, products }) => {
         <div>
           <div className="image-container">
             <img
-              src={urlFor(image && image[index])}
+              src={urlFor(image && image[index]).toString()}
               className="product-detail-image"
+              alt=""
             />
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
               <img
                 key={i}
-                src={urlFor(item)}
+                src={urlFor(item).toString()}
                 className={
                   i === index ? "small-image selected-image" : "small-image"
                 }

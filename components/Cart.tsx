@@ -33,7 +33,8 @@ interface StateContext {
 }
 
 const Cart = () => {
-  const cartRef = useRef();
+  const cartRef = useRef<HTMLDivElement | null>(null);
+
   const {
     totalPrice,
     totalQuantites,
@@ -54,7 +55,7 @@ const Cart = () => {
       body: JSON.stringify(cartItems),
     });
 
-    if (response.statusCode === 500) return;
+    if (response.status === 500) return;
 
     const data = await response.json();
 
@@ -97,8 +98,11 @@ const Cart = () => {
             cartItems.map((item) => (
               <div className="product" key={item._id}>
                 <img
-                  src={urlFor(item?.image[0])}
+                  src={urlFor(item?.image[0]).toString()}
                   className="cart-product-image"
+                  alt=""
+                  width={180}
+                  height={150}
                 />
 
                 <div className="item-desc">

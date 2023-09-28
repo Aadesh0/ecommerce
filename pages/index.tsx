@@ -3,7 +3,7 @@ import React from "react";
 import { Product, FooterBanner, HeroBanner } from "@/components";
 import { client } from "@/lib/client";
 
-const index = ({ product, bannerData }) => {
+const index = ({ product, bannerData }: { product: any; bannerData: any }) => {
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -13,7 +13,7 @@ const index = ({ product, bannerData }) => {
         <p>Speakers of many variations</p>
       </div>
       <div className="products-container">
-        {product?.map((product) => (
+        {product?.map((product: any) => (
           <Product key={product._id} product={product} />
         ))}
       </div>
