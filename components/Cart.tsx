@@ -14,24 +14,6 @@ import { useStateContext } from "@/context/StateContext";
 import { urlFor } from "@/lib/client";
 import getStripe from "@/lib/getStripe";
 
-interface YourItemType {
-  _id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string[];
-  // other properties
-}
-
-interface StateContext {
-  totalPrice: number;
-  totalQuantites: number;
-  cartItems: Array<YourItemType>; // Replace YourItemType with the actual type of cart items
-  setShowCart: (show: boolean) => void;
-  toggleCartItemQuantity: (itemId: string, action: string) => void;
-  onRemove: (item: YourItemType) => void;
-}
-
 const Cart = () => {
   const cartRef = useRef<HTMLDivElement | null>(null);
 

@@ -9,6 +9,7 @@ interface Product {
   name: string;
   price: number;
   quantity: number;
+  image: string[];
   // Add other properties as needed
 }
 
